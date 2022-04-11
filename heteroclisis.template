@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<title>Heteroclisis database</title>
+	<style>
+		code {color: blue; font-size: 130%;}
+		.attribute {
+			font-weight: bold;
+			background-color: lightGreen;
+		}
+		.resultTable {
+			background-color: rgb(200,255,200);
+			border-collapse: collapse;
+			margin-bottom: 1em;
+		}
+		.green {color: green;}
+		.red {color: red;}
+		.result {background-color: yellow;}
+		tr {
+			border-bottom: 1px solid black;
+		}
+	</style>
+	<script>
+		function resetQuery() {
+			event.preventDefault();
+			document.getElementById('query').value = '';
+			document.getElementById('query').focus();
+		} // resetQuery
+	</script>
+</head>
+<body>
+<h1>Query</h1>
+<div>
+<form method='POST'>
+    <p>
+    <input id='query' type=text name=query value="<TMPL_VAR NAME="query"/>" SIZE=30> 
+	<p>
+    <input type=submit class='green' value="Look up">
+	<input type=reset class='red' value="Reset query" onclick='resetQuery();'>
+</form> </div>
+<h1> Heteroclisis Database </h1>
+<TMPL_IF NAME="haveResult">
+<h2>Result of search</h2>
+	<TMPL_LOOP NAME="results">
+		<table class='resultTable'>
+		<TMPL_LOOP NAME="values">
+		<tr><TMPL_VAR NAME="entry"></tr>
+		</TMPL_LOOP>
+		</table>
+	</TMPL_LOOP>
+</TMPL_IF>
+<h2>Background</h2>
+<p>
+This is a searchable database of heteroclite paradigms in thirty-one 
+languages from twelve different language families:
+<table>
+<tr>
+<td> <strong>Language Family </strong> </td>
+	<td> <strong> Language </strong> </td>
+</tr><tr>
+<td> AFRO-ASIATIC </td>
+	<td> Hausa, Hebrew </td>
+</tr><tr>
+<td> ALTAIC </td>
+	<td> Mongolian </td>
+</tr><tr>
+<td> AUSTRALIAN </td>
+	<td> Ngiyambaa </td>
+</tr><tr>
+<td> CHUKOTKO-KAMCHATKAN </td>
+	<td> Chukchee </td>
+</tr><tr>
+<td> INDO-EUROPEAN </td>
+	<td> Albanian, Armenian, Bulgarian, Czech, Dutch, French, Greek, 
+Hindi, Latin, Lithuanian, Lower Sorbian, Old English, Polish, Russian, 
+Sanskrit, Swedish, Vedic </td>
+</tr><tr>
+<td> JAPANESE </td>
+	<td> Japanese </td>
+</tr><tr>
+<td> MUSKOGEAN </td>
+	<td> Koasati </td>
+</tr><tr>
+<td> NIGER-CONGO </td>
+	<td> Fula </td>
+</tr><tr>
+<td> NILO-SAHARAN </td>
+	<td> Ngiti </td>
+</tr><tr>
+<td> OTO-MANGUEAN </td>
+	<td> Chinantec, Zapotec </td>
+</tr><tr>
+<td> PENUTIAN </td>
+	<td> Takelma </td>
+</tr><tr>
+<td> URALIC </td>
+	<td> Hungarian, Mari </td>
+</tr>
+</table>
+
+<h2>Query format</h2>
+<p>
+You may use any number of terms (case insensitive), such as
+<ul>
+<li> the name of a language from the list above
+<li> the name of a language family from the list above
+<li> the name of a part of speech.
+</ul>
+If you provide multiple terms, any entry that matches every term will be 
+returned. You can separate terms with <strong>-o</strong> for <code>or</code>
+and with
+<strong> ! </strong>
+for <code>but not</code>. 
+Surround such separators with white space. Search looks at all data fields.
+
+<p>
+Searching the database in this way will produce a list of zero or more 
+records. Each record summarizes the characteristics of a heteroclite 
+paradigm and includes a hyperlink to the paradigm itself (with accompanying 
+bibliographic references).
+
+<p>
+To make this database as useful as possible, I will update it periodically 
+with additional paradigms. Users are therefore invited to submit additional 
+examples of heteroclisis to me at
+<a href='mailto:gstump@uky.edu'>gstump@uky.edu</a>; all submissions should 
+include a reference to a published source where the paradigm in question 
+can be found.
+
+<p>
+This database was compiled by Gregory Stump and Virginia Henriksen at the 
+University of Kentucky.  Raphael Finkel translated it into Qddb for this 
+web page.
+
+Please report any errors or bugs in the database to
+<a href='mailto:gstump@uky.edu'>gstump@uky.edu</a>.
+
+</body>
+</html>
